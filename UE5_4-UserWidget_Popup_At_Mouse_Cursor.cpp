@@ -89,6 +89,10 @@ void UMyHUDCClass::ShowPopupAtCursor()
 
 	APlayerController* controller = GetOwningPlayer();
 	FVector2D popupSize = myPopup->GetDesiredSize();
+
+	// Get the mouse position scaled by DPI.
+	// The popupSize modification causes the widget to be rendered with its lower right corner at the mouse cursor.
+	// The magic numbers @ the end are to simply not have the widget directly on the cursor.
 	FVector2d scaledMouse = GetDPIScaledMousePositionForUMG(controller) - popupSize - FVector2D(4.0f, 4.0f);
 
 	if (popupPanelSlot)
